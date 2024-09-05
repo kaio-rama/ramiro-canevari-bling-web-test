@@ -18,11 +18,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  
-  background: linear-gradient(0deg,
-             rgba(48,24,26,1) 2%,
-              rgba(208,188,188,1) 90%);
-
+  background: linear-gradient(0deg, rgba(48,24,26,1) 2%, rgba(208,188,188,1) 90%);
   min-height: 100vh;
 }
 
@@ -32,25 +28,35 @@ body {
   }
 }
 
-.title{
-  font-size: 72px;
+.title, .sub-title, label {
   color: #fff;
 }
 
-.sub-title{
+.title {
+  font-size: 60px;
+}
+
+.sub-title {
   font-size: 24px;
   color: #ccc;
 }
 
-.nav-bar{
-  background: rgb(228,4,36);
-  background: linear-gradient(0deg,
-             rgba(228,4,36,0.9317927854735644) 27%,
-              rgba(88,18,18,1) 100%); 
+li {
+  font-style: italic;
+  padding-left: 12px;
+}
+
+.nav-bar {
+  background: linear-gradient(0deg, rgba(228,4,36,0.93) 27%, rgba(88,18,18,1) 100%);
   padding: 25px;
 }
 
-.search-bar{
+label {
+  font-weight: 600;
+  font-size: 32px;
+}
+
+.search-bar {
   background: linear-gradient(45deg, #3335 25%, #1116 40%);
   border: none;
   border-radius: 25px;
@@ -64,12 +70,13 @@ body {
 }
 
 @media (max-width: 680px) {
-  .title{
+  .title {
     font-size: 50px;
     font-weight: 400;
   }
 
-  .search-bar{
+  .search-bar {
     width: 100%;
   }
 }
+

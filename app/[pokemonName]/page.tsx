@@ -12,7 +12,6 @@ import { Metadata } from "next";
 import Link from "next/link";
 import SwitchSkin from "@/components/switch-skin";
 
-
 export async function generateMetadata({ params } : { params : { pokemonName : string }}): Promise<Metadata> {
     const { pokemonName } = params;
     return {
@@ -23,48 +22,52 @@ export async function generateMetadata({ params } : { params : { pokemonName : s
 export default async function PokemonPage({ params } : { params : { pokemonName : string }}){
     const { pokemonName } = params;
     const pokemonData = await getPokemon(pokemonName);
-    console.log(pokemonData)
+    const { sprites, id, types, height, weight, abilities, stats } = pokemonData;
 
-    return(
+    return (
         <>
             <div className={centeredItems}>                
-                <h1 className="title">{pokemonName.toUpperCase()}</h1>
-                <SwitchSkin />
-                    <Suspense fallback ={LoadingPokePage()} >
+                <Suspense fallback={<LoadingPokePage />} >
+                    <div className={styleCards}>
+                        <h1 className="title">{pokemonName.toUpperCase()}</h1>
+                        <SwitchSkin />
                         <Image 
-                            src={pokemonData.sprites.other['official-artwork'].front_default}
-                            alt={"Illustration of " + pokemonName}
+                            src={sprites.other['official-artwork'].front_default}
+                            alt={`Illustration of ${pokemonName}`}
                             width={400}
                             height={400}
                         />
                         <label> Default Skin </label>
                         <Image 
-                            src={pokemonData.sprites.other['official-artwork'].front_shiny}
-                            alt={"Illustration of " + pokemonName}
+                            src={sprites.other['official-artwork'].front_shiny}
+                            alt={`Shiny illustration of ${pokemonName}`}
                             width={400}
                             height={400}
                             hidden
                         />
                         <label hidden> Shiny Skin </label>
-                        <p> Pokemon ID : {pokemonData.id} </p>
-                        <p> Pokemon types : {pokemonData.types.map(( type : any) => type.type.name )} </p>
-                        <p> Pokemon height : {pokemonData.height} </p>
-                        <p> Pokemon weight : {pokemonData.weight} </p>
-                        <p> Pokemon Abilities: </p>
-                        <ul> 
-                            {pokemonData.abilities.map(( ability: any) => 
-                                <li> {ability.ability.name} </li> )}
-                        </ul>
-                        <p> Pokemon Stats: </p>
-                        <ul>
-                        {pokemonData.stats.map(( stats: any) => 
-                                <li> {stats.stat.name} : {stats.base_stat} </li> )}
-                        </ul>
-                    </Suspense>
-                <Link href={"/"} className={styleCards}> Come Back </Link>
+                        <div style={{ textAlign: "justify", padding: "12px" }}>
+                            <p>Pokemon ID: {id}</p>
+                            <p>Pokemon types: {types.map((type: { type: { name: string }}) => type.type.name).join(', ')}</p>
+                            <p>Pokemon height: {height}</p>
+                            <p>Pokemon weight: {weight}</p>
+                            <p>Pokemon Abilities:</p>
+                            <ul>
+                                {abilities.map((ability: { ability: { name: string }}) => (
+                                    <li key={ability.ability.name}>{ability.ability.name}</li>
+                                ))}
+                            </ul>
+                            <p>Pokemon Stats:</p>
+                            <ul>
+                                {stats.map((stat: { stat: { name: string }, base_stat: number }) => (
+                                    <li key={stat.stat.name}>{stat.stat.name}: {stat.base_stat}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </Suspense>
+                <Link href="/" className={styleCards}>Come Back</Link>
             </div>
         </>
-    )
-
+    );
 }
-
