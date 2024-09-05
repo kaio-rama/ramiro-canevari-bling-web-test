@@ -6,12 +6,14 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ####  Next.JS --version : 14.2.7
 ####  Estimated time: 5 hours aprox
 
-### Run the app 
+### Run the app
+#### You can try it online from my Vercel's account
 
-npm run start
+https://ramiro-canevari-bling-web-test.vercel.app/
 
-if it's not working try:
+#### Or you can also download the repository and running it locally:
 ```
-1 - npm install
-2 - npm run build
-3 - npm run start
+1 - clone the repository
+2 - npm install
+3 - npm run build
+4 - npm run start
