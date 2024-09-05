@@ -1,29 +1,32 @@
 "use client"
 
-import { useSearchParams, usePathname , useRouter } from "next/navigation"
+import { useState } from "react";
 
-export default function SearchBar({placeholder} : {placeholder : string}){
-    const searchParams = useSearchParams();
-    const pathname = usePathname();
-    const {replace} = useRouter();
+export default function SearchBar({ placeholder }: { placeholder: string }) {
+  const [searchTerm, setSearchTerm] = useState("");
 
-    const handleSearch = (term : string ) => {
-        const params = new URLSearchParams(searchParams)
-        if (term){
-            params.set('query', term)
-        } else {
-            params.delete('query')
-        }
-        replace(`${pathname}?${params.toString()}`)
+  const handleSearch = (term: string) => {
+    setSearchTerm(term.toLowerCase());
 
-    }
-    
-    return(
-    <input 
-        onChange={(event) => handleSearch(event.target.value)}
-        className="search-bar"  
-        placeholder={placeholder}
-        defaultValue={searchParams.get('query')?.toString()}
-        ></input>
+    const allPokemons = Array.from(
+      document.getElementsByClassName("noptext-2xl font-semibold")
+    );
 
-)}
+    allPokemons.forEach((pokemon) => {
+      const pokemonName = pokemon.textContent?.toLowerCase() || "";
+      if (pokemonName.includes(term.toLowerCase())) {
+        pokemon.parentElement?.classList.remove("hidden");
+      } else {
+        pokemon.parentElement?.classList.add("hidden");
+      }
+    });
+  };
+
+    return (
+    <input
+      onChange={(event) => handleSearch(event.target.value)}
+      className="search-bar"
+      placeholder={placeholder}
+    />
+  );
+}

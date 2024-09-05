@@ -37,7 +37,10 @@ body {
   color: #fff;
 }
 
-
+.sub-title{
+  font-size: 24px;
+  color: #ccc;
+}
 
 .nav-bar{
   background: rgb(228,4,36);
@@ -58,4 +61,15 @@ body {
   color: #eee;
   height: 40px;
   margin-top: 10px;
+}
+
+@media (max-width: 680px) {
+  .title{
+    font-size: 50px;
+    font-weight: 400;
+  }
+
+  .search-bar{
+    width: 100%;
+  }
 }

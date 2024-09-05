@@ -27,7 +27,7 @@ export default function LoadMorePokemons() {
                     <PokemonCard key={pokemon.name} name={pokemon.name} />
                 ))}
             
-            <button className={`${styleCards} m-24`} onClick={handleClick}>
+            <button className={`${styleCards} -ab`}style={{marginTop: "82px"}} onClick={handleClick}>
                 {loading ? "Cargando..." : "CARGAR MÁS POKEMONES"}
             </button>
         </div>
