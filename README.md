@@ -2,9 +2,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Poke Desck - Bling web Test 
 
-Name: Ramiro Canevari
-Next.JS --version : 14.2.7
-Estimated time: 5 hours aprox
+#### Name: Ramiro Canevari
+####  Next.JS --version : 14.2.7
+####  Estimated time: 5 hours aprox
 
 ### Run the app 
 
